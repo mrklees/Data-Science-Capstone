@@ -347,28 +347,6 @@ information about how to distinguish between the target classes. To this
 end data visualization is a very helpful tool in identifying which
 variables have the most visible trends with our target.
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}31}]:} \PY{c+c1}{\PYZsh{} These are our main data structures}
-         \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
-         \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
-         
-         \PY{c+c1}{\PYZsh{} These packages are used for visualization}
-         \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
-         \PY{k+kn}{import} \PY{n+nn}{seaborn} \PY{k}{as} \PY{n+nn}{sns}
-         \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
-         
-         \PY{c+c1}{\PYZsh{} Training examples and labels are already split for us.  A quick check of the building\PYZus{}id variables}
-         \PY{c+c1}{\PYZsh{} confirms that they are ordered the same}
-         \PY{n}{data} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{data/train\PYZus{}values.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-         \PY{n}{labels} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{data/train\PYZus{}labels.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-         
-         \PY{c+c1}{\PYZsh{} We\PYZsq{}ll merge the dataset for come convenience when visualizing}
-         \PY{n}{merged} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{merge}\PY{p}{(}\PY{n}{labels}\PY{p}{)}
-         
-         \PY{c+c1}{\PYZsh{} The Submission Data }
-         \PY{n}{test} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{data/test\PYZus{}values.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-\end{Verbatim}
-
 
     With the data loaded, we can view some quick and basic information about
 our data.
@@ -387,7 +365,7 @@ Descriptive stats are easily available for numeric variables.
     \end{Verbatim}
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}32}]:}                                           count       mean          std  min  \textbackslash{}
+{\color{outcolor}Out[{\color{outcolor}32}]:}                                           count       mean          std  min  
          building\_id                             10000.0  9987.1600  5800.800829  1.0   
          geo\_level\_1\_id                          10000.0     7.1356     6.225567  0.0   
          geo\_level\_2\_id                          10000.0   296.9303   279.390651  0.0   
@@ -420,40 +398,7 @@ Descriptive stats are easily available for numeric variables.
          has\_secondary\_use\_use\_police            10000.0     0.0001     0.010000  0.0   
          has\_secondary\_use\_other                 10000.0     0.0053     0.072612  0.0   
          damage\_grade                            10000.0     2.2488     0.611993  1.0   
-         
-                                                     25\%     50\%       75\%      max  
-         building\_id                             4998.75  9963.5  15044.75  19999.0  
-         geo\_level\_1\_id                             2.00     6.0     10.00     30.0  
-         geo\_level\_2\_id                            60.00   219.0    466.00   1411.0  
-         geo\_level\_3\_id                           606.75  1937.5   4158.00  12151.0  
-         count\_floors\_pre\_eq                        2.00     2.0      3.00      9.0  
-         age                                       10.00    15.0     30.00    995.0  
-         area                                      26.00    34.0     44.00    425.0  
-         height                                     4.00     5.0      5.00     30.0  
-         has\_superstructure\_adobe\_mud               0.00     0.0      0.00      1.0  
-         has\_superstructure\_mud\_mortar\_stone        1.00     1.0      1.00      1.0  
-         has\_superstructure\_stone\_flag              0.00     0.0      0.00      1.0  
-         has\_superstructure\_cement\_mortar\_stone     0.00     0.0      0.00      1.0  
-         has\_superstructure\_mud\_mortar\_brick        0.00     0.0      0.00      1.0  
-         has\_superstructure\_cement\_mortar\_brick     0.00     0.0      0.00      1.0  
-         has\_superstructure\_timber                  0.00     0.0      1.00      1.0  
-         has\_superstructure\_bamboo                  0.00     0.0      0.00      1.0  
-         has\_superstructure\_rc\_non\_engineered       0.00     0.0      0.00      1.0  
-         has\_superstructure\_rc\_engineered           0.00     0.0      0.00      1.0  
-         has\_superstructure\_other                   0.00     0.0      0.00      1.0  
-         count\_families                             1.00     1.0      1.00      7.0  
-         has\_secondary\_use                          0.00     0.0      0.00      1.0  
-         has\_secondary\_use\_agriculture              0.00     0.0      0.00      1.0  
-         has\_secondary\_use\_hotel                    0.00     0.0      0.00      1.0  
-         has\_secondary\_use\_rental                   0.00     0.0      0.00      1.0  
-         has\_secondary\_use\_institution              0.00     0.0      0.00      1.0  
-         has\_secondary\_use\_school                   0.00     0.0      0.00      1.0  
-         has\_secondary\_use\_industry                 0.00     0.0      0.00      1.0  
-         has\_secondary\_use\_health\_post              0.00     0.0      0.00      1.0  
-         has\_secondary\_use\_gov\_office               0.00     0.0      0.00      1.0  
-         has\_secondary\_use\_use\_police               0.00     0.0      0.00      1.0  
-         has\_secondary\_use\_other                    0.00     0.0      0.00      1.0  
-         damage\_grade                               2.00     2.0      3.00      3.0  
+        
 \end{Verbatim}
             
     \subsubsection{Exploring the Distributions of Each
@@ -682,18 +627,6 @@ clearly negative and floor count is clearly positive. It's important not
 to overstate the value pearson correlation, but it does give us some
 hints.
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}35}]:} \PY{n}{f}\PY{p}{,} \PY{n}{axs} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,} \PY{l+m+mi}{15}\PY{p}{)}\PY{p}{)}
-         \PY{n}{cor} \PY{o}{=} \PY{n}{merged}\PY{o}{.}\PY{n}{corr}\PY{p}{(}\PY{p}{)}
-         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Features With Associated Correlation in Increasing Order}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-         \PY{n+nb}{print}\PY{p}{(}\PY{n}{cor}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{damage\PYZus{}grade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{p}{)}\PY{p}{)}
-         \PY{n}{mask} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros\PYZus{}like}\PY{p}{(}\PY{n}{cor}\PY{p}{)}
-         \PY{n}{mask}\PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{triu\PYZus{}indices\PYZus{}from}\PY{p}{(}\PY{n}{mask}\PY{p}{)}\PY{p}{]} \PY{o}{=} \PY{k+kc}{True}
-         \PY{k}{with} \PY{n}{sns}\PY{o}{.}\PY{n}{axes\PYZus{}style}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{white}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{:}
-             \PY{n}{ax} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{heatmap}\PY{p}{(}\PY{n}{cor}\PY{p}{,} \PY{n}{mask}\PY{o}{=}\PY{n}{mask}\PY{p}{,} \PY{n}{vmax}\PY{o}{=}\PY{o}{.}\PY{l+m+mi}{3}\PY{p}{,} \PY{n}{square}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{axs}\PY{p}{)}
-         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
-\end{Verbatim}
-
 
     \begin{Verbatim}[commandchars=\\\{\}]
 Features With Associated Correlation in Increasing Order
@@ -872,121 +805,6 @@ second. I am often of the opinion that is better to try to get a single
 model to learn those more complex relationships, but so far that doesn't
 seem to be happening.
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}40}]:} \PY{k+kn}{import} \PY{n+nn}{featuretools} \PY{k}{as} \PY{n+nn}{ft}
-         
-         \PY{k}{def} \PY{n+nf}{build\PYZus{}es}\PY{p}{(}\PY{n}{data}\PY{p}{)}\PY{p}{:}
-             \PY{c+c1}{\PYZsh{} Feature tools will do its best auto detect the dtypes of our variables.  However we\PYZsq{}ll need to make some corrections.}
-             \PY{n}{dtypes} \PY{o}{=} \PY{p}{\PYZob{}}
-                 \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{geo\PYZus{}level\PYZus{}1\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{ft}\PY{o}{.}\PY{n}{variable\PYZus{}types}\PY{o}{.}\PY{n}{Categorical}\PY{p}{,}
-                 \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{geo\PYZus{}level\PYZus{}2\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{ft}\PY{o}{.}\PY{n}{variable\PYZus{}types}\PY{o}{.}\PY{n}{Categorical}\PY{p}{,}
-                 \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{geo\PYZus{}level\PYZus{}3\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{ft}\PY{o}{.}\PY{n}{variable\PYZus{}types}\PY{o}{.}\PY{n}{Numeric}\PY{p}{,}
-                 \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{has\PYZus{}superstructure\PYZus{}adobe\PYZus{}mud}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{ft}\PY{o}{.}\PY{n}{variable\PYZus{}types}\PY{o}{.}\PY{n}{Boolean}\PY{p}{,}
-                 \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{has\PYZus{}superstructure\PYZus{}mud\PYZus{}mortar\PYZus{}stone}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{ft}\PY{o}{.}\PY{n}{variable\PYZus{}types}\PY{o}{.}\PY{n}{Boolean}\PY{p}{,} 
-                 \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{has\PYZus{}superstructure\PYZus{}stone\PYZus{}flag}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{ft}\PY{o}{.}\PY{n}{variable\PYZus{}types}\PY{o}{.}\PY{n}{Boolean}\PY{p}{,}
-                 \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{has\PYZus{}superstructure\PYZus{}cement\PYZus{}mortar\PYZus{}stone}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{ft}\PY{o}{.}\PY{n}{variable\PYZus{}types}\PY{o}{.}\PY{n}{Boolean}\PY{p}{,}
-                 \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{has\PYZus{}superstructure\PYZus{}mud\PYZus{}mortar\PYZus{}brick}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{ft}\PY{o}{.}\PY{n}{variable\PYZus{}types}\PY{o}{.}\PY{n}{Boolean}\PY{p}{,}
-                 \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{has\PYZus{}superstructure\PYZus{}cement\PYZus{}mortar\PYZus{}brick}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{ft}\PY{o}{.}\PY{n}{variable\PYZus{}types}\PY{o}{.}\PY{n}{Boolean}\PY{p}{,} 
-                 \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{has\PYZus{}superstructure\PYZus{}timber}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{ft}\PY{o}{.}\PY{n}{variable\PYZus{}types}\PY{o}{.}\PY{n}{Boolean}\PY{p}{,}
-                 \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{has\PYZus{}superstructure\PYZus{}bamboo}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{ft}\PY{o}{.}\PY{n}{variable\PYZus{}types}\PY{o}{.}\PY{n}{Boolean}\PY{p}{,} 
-                 \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{has\PYZus{}superstructure\PYZus{}rc\PYZus{}non\PYZus{}engineered}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{ft}\PY{o}{.}\PY{n}{variable\PYZus{}types}\PY{o}{.}\PY{n}{Boolean}\PY{p}{,}
-                 \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{has\PYZus{}superstructure\PYZus{}rc\PYZus{}engineered}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{ft}\PY{o}{.}\PY{n}{variable\PYZus{}types}\PY{o}{.}\PY{n}{Boolean}\PY{p}{,} 
-                 \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{has\PYZus{}superstructure\PYZus{}other}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{ft}\PY{o}{.}\PY{n}{variable\PYZus{}types}\PY{o}{.}\PY{n}{Boolean}\PY{p}{,}
-                 \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{has\PYZus{}secondary\PYZus{}use}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{ft}\PY{o}{.}\PY{n}{variable\PYZus{}types}\PY{o}{.}\PY{n}{Boolean}\PY{p}{,}
-                 \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{has\PYZus{}secondary\PYZus{}use\PYZus{}agriculture}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{ft}\PY{o}{.}\PY{n}{variable\PYZus{}types}\PY{o}{.}\PY{n}{Boolean}\PY{p}{,} 
-                 \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{has\PYZus{}secondary\PYZus{}use\PYZus{}hotel}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{ft}\PY{o}{.}\PY{n}{variable\PYZus{}types}\PY{o}{.}\PY{n}{Boolean}\PY{p}{,}
-                 \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{has\PYZus{}secondary\PYZus{}use\PYZus{}rental}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{ft}\PY{o}{.}\PY{n}{variable\PYZus{}types}\PY{o}{.}\PY{n}{Boolean}\PY{p}{,}
-                 \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{has\PYZus{}secondary\PYZus{}use\PYZus{}institution}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{ft}\PY{o}{.}\PY{n}{variable\PYZus{}types}\PY{o}{.}\PY{n}{Boolean}\PY{p}{,}
-                 \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{has\PYZus{}secondary\PYZus{}use\PYZus{}school}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{ft}\PY{o}{.}\PY{n}{variable\PYZus{}types}\PY{o}{.}\PY{n}{Boolean}\PY{p}{,} 
-                 \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{has\PYZus{}secondary\PYZus{}use\PYZus{}industry}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{ft}\PY{o}{.}\PY{n}{variable\PYZus{}types}\PY{o}{.}\PY{n}{Boolean}\PY{p}{,}
-                 \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{has\PYZus{}secondary\PYZus{}use\PYZus{}health\PYZus{}post}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{ft}\PY{o}{.}\PY{n}{variable\PYZus{}types}\PY{o}{.}\PY{n}{Boolean}\PY{p}{,} 
-                 \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{has\PYZus{}secondary\PYZus{}use\PYZus{}gov\PYZus{}office}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{ft}\PY{o}{.}\PY{n}{variable\PYZus{}types}\PY{o}{.}\PY{n}{Boolean}\PY{p}{,}
-                 \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{has\PYZus{}secondary\PYZus{}use\PYZus{}use\PYZus{}police}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{ft}\PY{o}{.}\PY{n}{variable\PYZus{}types}\PY{o}{.}\PY{n}{Boolean}\PY{p}{,} 
-                 \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{has\PYZus{}secondary\PYZus{}use\PYZus{}other}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{ft}\PY{o}{.}\PY{n}{variable\PYZus{}types}\PY{o}{.}\PY{n}{Boolean}
-             \PY{p}{\PYZcb{}}
-             
-             \PY{c+c1}{\PYZsh{} Start be definng an EntitySet.  This abstractly contains all data we\PYZsq{}ll use to train the model, potentially in multiple tables. }
-             \PY{n}{es} \PY{o}{=} \PY{n}{ft}\PY{o}{.}\PY{n}{EntitySet}\PY{p}{(}\PY{n+nb}{id}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Buildings}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-         
-             \PY{n}{data} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{p}{)}
-             \PY{n}{data}\PY{o}{.}\PY{n}{reset\PYZus{}index}\PY{p}{(}\PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
-             \PY{c+c1}{\PYZsh{} With the container defined, we\PYZsq{}ll add our data}
-             \PY{n}{es} \PY{o}{=} \PY{n}{es}\PY{o}{.}\PY{n}{entity\PYZus{}from\PYZus{}dataframe}\PY{p}{(}\PY{n}{entity\PYZus{}id}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{buildings}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
-                                           \PY{n}{dataframe}\PY{o}{=}\PY{n}{data}\PY{p}{,}
-                                           \PY{n}{variable\PYZus{}types}\PY{o}{=}\PY{n}{dtypes}\PY{p}{,}
-                                           \PY{n}{index}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{index}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-         
-             \PY{c+c1}{\PYZsh{} This method will traverse our categorical variables and identify interesting values to construct}
-             \PY{c+c1}{\PYZsh{} where variables from}
-             \PY{n}{es}\PY{o}{.}\PY{n}{add\PYZus{}interesting\PYZus{}values}\PY{p}{(}\PY{n}{max\PYZus{}values}\PY{o}{=}\PY{l+m+mi}{50}\PY{p}{,} \PY{n}{verbose}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
-         
-             \PY{k}{return} \PY{n}{es}
-         
-         \PY{n}{es} \PY{o}{=} \PY{n}{build\PYZus{}es}\PY{p}{(}\PY{n}{data}\PY{p}{)}
-         
-         \PY{c+c1}{\PYZsh{} Yields our base feature matrix and defs}
-         \PY{n}{base\PYZus{}mat}\PY{p}{,} \PY{n}{base\PYZus{}defs} \PY{o}{=} \PY{n}{ft}\PY{o}{.}\PY{n}{dfs}\PY{p}{(}\PY{n}{entityset}\PY{o}{=}\PY{n}{es}\PY{p}{,}
-                                        \PY{n}{target\PYZus{}entity}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{buildings}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
-                                        \PY{n}{agg\PYZus{}primitives}\PY{o}{=}\PY{p}{[}\PY{p}{]}\PY{p}{,}
-                                        \PY{n}{max\PYZus{}depth}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
-         
-         \PY{c+c1}{\PYZsh{} Encode categorical features with one hot encoding using feature tools}
-         \PY{n}{basemat\PYZus{}encoded}\PY{p}{,} \PY{n}{base\PYZus{}encoded} \PY{o}{=} \PY{n}{ft}\PY{o}{.}\PY{n}{encode\PYZus{}features}\PY{p}{(}\PY{n}{base\PYZus{}mat}\PY{p}{,} \PY{n}{base\PYZus{}defs}\PY{p}{,} \PY{n}{include\PYZus{}unknown}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,} \PY{n}{top\PYZus{}n}\PY{o}{=}\PY{l+m+mi}{1000}\PY{p}{,}
-                                                            \PY{n}{to\PYZus{}encode}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{geo\PYZus{}level\PYZus{}1\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{geo\PYZus{}level\PYZus{}2\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
-                                                                       \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{land\PYZus{}surface\PYZus{}condition}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{foundation\PYZus{}type}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
-                                                                       \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{roof\PYZus{}type}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ground\PYZus{}floor\PYZus{}type}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{other\PYZus{}floor\PYZus{}type}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
-                                                                       \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{position}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{plan\PYZus{}configuration}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{legal\PYZus{}ownership\PYZus{}status}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
-         \PY{c+c1}{\PYZsh{} Save the feature sets so that we can load them with our submission data}
-         \PY{n}{ft}\PY{o}{.}\PY{n}{save\PYZus{}features}\PY{p}{(}\PY{n}{base\PYZus{}encoded}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{base\PYZus{}features}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-         
-         \PY{n}{base} \PY{o}{=} \PY{n}{basemat\PYZus{}encoded}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{building\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
-         
-         \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{preprocessing} \PY{k}{import} \PY{n}{RobustScaler}
-         \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{model\PYZus{}selection} \PY{k}{import} \PY{n}{train\PYZus{}test\PYZus{}split}\PY{p}{,} \PY{n}{GridSearchCV}
-         
-         \PY{k}{def} \PY{n+nf}{preprocessing}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{k+kc}{None}\PY{p}{)}\PY{p}{:}
-             \PY{c+c1}{\PYZsh{} At this point, any NA\PYZsq{}s can just be filled with 0.  }
-             \PY{n}{X}\PY{o}{.}\PY{n}{fillna}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
-             \PY{c+c1}{\PYZsh{} Drop columns which have no information value}
-             \PY{c+c1}{\PYZsh{} X = drop\PYZus{}unused(X)}
-             \PY{c+c1}{\PYZsh{} Drop any columns which only have a single value}
-             \PY{c+c1}{\PYZsh{}X = drop\PYZus{}trivial(X)}
-             \PY{c+c1}{\PYZsh{} Scale our numeric cols}
-             \PY{n}{X} \PY{o}{=} \PY{n}{norm\PYZus{}cols}\PY{p}{(}\PY{n}{X}\PY{p}{)}
-             \PY{k}{return} \PY{n}{X}\PY{p}{,} \PY{n}{y}
-         
-         \PY{k}{def} \PY{n+nf}{drop\PYZus{}trivial}\PY{p}{(}\PY{n}{data}\PY{p}{)}\PY{p}{:}
-             \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}If a column only has 1 value, drop it\PYZdq{}\PYZdq{}\PYZdq{}}
-             \PY{k}{for} \PY{n}{col} \PY{o+ow}{in} \PY{n}{data}\PY{o}{.}\PY{n}{columns}\PY{p}{:}
-                 \PY{k}{if} \PY{n+nb}{len}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{n}{col}\PY{p}{]}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{p}{)}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{:}
-                     \PY{n}{data}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{n}{col}\PY{p}{,}\PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}            
-             \PY{k}{return} \PY{n}{data}
-         
-         \PY{k}{def} \PY{n+nf}{norm\PYZus{}cols}\PY{p}{(}\PY{n}{data}\PY{p}{)}\PY{p}{:}
-             \PY{c+c1}{\PYZsh{} Identify columns in need of scaling by those who have more than two values}
-             \PY{n}{numeric} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n}{data}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{p}{(}\PY{n}{data}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n+nb}{len}\PY{p}{(}\PY{n}{x}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)} \PY{o}{\PYZgt{}} \PY{l+m+mi}{2}\PY{p}{)}\PY{o}{.}\PY{n}{values}\PY{p}{]}\PY{o}{.}\PY{n}{columns}\PY{p}{)}
-             \PY{c+c1}{\PYZsh{}numeric.remove(\PYZsq{}geo\PYZus{}level\PYZus{}3\PYZus{}id\PYZsq{})}
-             \PY{n}{scaler} \PY{o}{=} \PY{n}{RobustScaler}\PY{p}{(}\PY{p}{)}
-             \PY{n}{scaled} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{scaler}\PY{o}{.}\PY{n}{fit\PYZus{}transform}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{n}{numeric}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{n}{numeric}\PY{p}{)}
-             \PY{k}{for} \PY{n}{column} \PY{o+ow}{in} \PY{n}{numeric}\PY{p}{:}
-                 \PY{n}{data}\PY{p}{[}\PY{n}{column}\PY{p}{]} \PY{o}{=} \PY{n}{scaled}\PY{p}{[}\PY{n}{column}\PY{p}{]}
-             \PY{k}{return} \PY{n}{data}
-\end{Verbatim}
-
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}41}]:} \PY{c+c1}{\PYZsh{} Obtain our preprocessed data and split it into training and validations sets}
-         \PY{n}{X}\PY{p}{,} \PY{n}{y} \PY{o}{=} \PY{n}{preprocessing}\PY{p}{(}\PY{n}{base}\PY{p}{,} \PY{n}{labels}\PY{o}{.}\PY{n}{damage\PYZus{}grade}\PY{p}{)}
-         \PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{X\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}test} \PY{o}{=} \PY{n}{train\PYZus{}test\PYZus{}split}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{train\PYZus{}size}\PY{o}{=}\PY{l+m+mf}{0.75}\PY{p}{,} \PY{n}{stratify}\PY{o}{=}\PY{n}{y}\PY{p}{)}
-\end{Verbatim}
-
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-C:\textbackslash{}Users\textbackslash{}perus\textbackslash{}AppData\textbackslash{}Local\textbackslash{}Continuum\textbackslash{}Anaconda3\textbackslash{}envs\textbackslash{}bayes\textbackslash{}lib\textbackslash{}site-packages\textbackslash{}sklearn\textbackslash{}model\_selection\textbackslash{}\_split.py:2026: FutureWarning: From version 0.21, test\_size will always complement train\_size unless both are specified.
-  FutureWarning)
-
-    \end{Verbatim}
-
     \subsection{Statistical Modeling}\label{statistical-modeling}
 
 Our primary strategy when modeling this problem was to try different
@@ -1003,8 +821,94 @@ to best match the evaluator on the leaderboard. Here is an example of
 these with the first logistic model trained. For brevity, the remainder
 of the detail on each model is contained in the
 \href{https://github.com/mrklees/Data-Science-Capstone/blob/master/Earthquake\%20Damage\%20Model.ipynb}{model
-report on GitHub.} Our best model, unsurprisingly, was the voting
-classifier.
+report on GitHub.}
+
+However, here were the results from the classification reports from each
+of our models:
+
+\begin{longtable}[]{@{}ccccc@{}}
+\toprule
+\begin{minipage}[b]{0.07\columnwidth}\centering\strut
+Model\strut
+\end{minipage} & \begin{minipage}[b]{0.25\columnwidth}\centering\strut
+f1 micro on 25-fold Cross Validation\strut
+\end{minipage} & \begin{minipage}[b]{0.20\columnwidth}\centering\strut
+Precision on Test Data\strut
+\end{minipage} & \begin{minipage}[b]{0.18\columnwidth}\centering\strut
+Recall on Test Data\strut
+\end{minipage} & \begin{minipage}[b]{0.16\columnwidth}\centering\strut
+f1 micro on test\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.07\columnwidth}\centering\strut
+Logistic Regression\strut
+\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\centering\strut
+.669\strut
+\end{minipage} & \begin{minipage}[t]{0.20\columnwidth}\centering\strut
+0.67\strut
+\end{minipage} & \begin{minipage}[t]{0.18\columnwidth}\centering\strut
+0.67\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\centering\strut
+0.66\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.07\columnwidth}\centering\strut
+Logistic Regression w/ Oversampling\strut
+\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\centering\strut
+0.63\strut
+\end{minipage} & \begin{minipage}[t]{0.20\columnwidth}\centering\strut
+0.65\strut
+\end{minipage} & \begin{minipage}[t]{0.18\columnwidth}\centering\strut
+0.59\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\centering\strut
+0.59\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.07\columnwidth}\centering\strut
+Random Forest\strut
+\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\centering\strut
+0.683\strut
+\end{minipage} & \begin{minipage}[t]{0.20\columnwidth}\centering\strut
+0.68\strut
+\end{minipage} & \begin{minipage}[t]{0.18\columnwidth}\centering\strut
+0.68\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\centering\strut
+0.66\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.07\columnwidth}\centering\strut
+Random Forest w/ Class Weighting\strut
+\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\centering\strut
+0.643\strut
+\end{minipage} & \begin{minipage}[t]{0.20\columnwidth}\centering\strut
+0.66\strut
+\end{minipage} & \begin{minipage}[t]{0.18\columnwidth}\centering\strut
+0.66\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\centering\strut
+0.66\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.07\columnwidth}\centering\strut
+Neural Network\strut
+\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\centering\strut
+-\strut
+\end{minipage} & \begin{minipage}[t]{0.20\columnwidth}\centering\strut
+0.65\strut
+\end{minipage} & \begin{minipage}[t]{0.18\columnwidth}\centering\strut
+0.65\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\centering\strut
+0.6376\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.07\columnwidth}\centering\strut
+Voting Classifier\strut
+\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\centering\strut
+0.693\strut
+\end{minipage} & \begin{minipage}[t]{0.20\columnwidth}\centering\strut
+0.7\strut
+\end{minipage} & \begin{minipage}[t]{0.18\columnwidth}\centering\strut
+0.7\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\centering\strut
+0.7\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
 
     \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}46}]:} \PY{c+c1}{\PYZsh{} Since we are being score on f1\PYZus{}score, we\PYZsq{}ll use this as our main measure of model fit}
@@ -1057,7 +961,7 @@ classifier.
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}47}]:} \PY{n}{selector} \PY{o}{=} \PY{n}{SelectKBest}\PY{p}{(}\PY{n}{k}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{all}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}53}]:} \PY{n}{selector} \PY{o}{=} \PY{n}{SelectKBest}\PY{p}{(}\PY{n}{k}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{all}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
          \PY{n}{Xfiltered} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{selector}\PY{o}{.}\PY{n}{fit\PYZus{}transform}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{)}\PY{p}{)}
          \PY{n}{logit\PYZus{}model} \PY{o}{=} \PY{n}{SGDClassifier}\PY{p}{(}\PY{n}{loss}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{log}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{penalty}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{elasticnet}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{max\PYZus{}iter}\PY{o}{=}\PY{l+m+mi}{1000000}\PY{p}{,} \PY{n}{tol}\PY{o}{=}\PY{l+m+mf}{1e\PYZhy{}12}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.0001}\PY{p}{,} \PY{n}{l1\PYZus{}ratio}\PY{o}{=}\PY{l+m+mf}{0.55}\PY{p}{)}
          \PY{n}{cross\PYZus{}validate}\PY{p}{(}\PY{n}{logit\PYZus{}model}\PY{p}{,} \PY{n}{Xfiltered}\PY{o}{.}\PY{n}{values}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{o}{.}\PY{n}{values}\PY{p}{,} \PY{n}{n\PYZus{}folds}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{oversample}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
@@ -1074,13 +978,18 @@ C:\textbackslash{}Users\textbackslash{}perus\textbackslash{}AppData\textbackslas
     \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-0.6329113924050633
-0.6522318454363758
-0.6386666666666667
+0.6537949400798935
+0.6524633821571239
+0.6711051930758988
+0.6631158455392809
+0.6826666666666666
 0.6773333333333333
-0.6588785046728972
-Training Error was distributed with mean:0.7182997849062074, std: 0.008839637368761092
-Validation Error was distributed with mean:0.6520043485028674, std: 0.015692660575970407
+0.6973333333333334
+0.7022696929238985
+0.6421895861148198
+0.6644385026737968
+Training Error was distributed with mean:0.7227989931113827, std: 0.013926921899655428
+Validation Error was distributed with mean:0.6706710475898044, std: 0.01849665565930226
 
     \end{Verbatim}
 
@@ -1154,7 +1063,8 @@ consider how a buildings neighbors had done when considering it's level
 of damage. We wonder if given latitutde and longitude or someother
 location measurement with a more objective frame of reference if we
 might have been able to exploit the physical patterns of earthquakes
-more effectively.
+more effectively. Moreover, this feature really prevents us from
+generalizing this model, as the geo codes as specific to this dataset.
 
 \subsubsection{Damage as a classification
 task}\label{damage-as-a-classification-task}
@@ -1171,6 +1081,30 @@ probability that their outcomes are different (one is grade 2 and the
 other is grade 3) due to pure random chance. With this thought in mind,
 it might be better to predict the cost of the damage as a real value to
 allow for more nuance.
+
+\subsection{A Pathway to Production}\label{a-pathway-to-production}
+
+Suppose that this report represented an exploratory pilot of the problem
+and that our organization, perhaps an insurance company, is sufficiently
+convinced that the problem is modelable. What would be our next steps?
+
+A first step would definitely be to invest in data collection. Data from
+a single earthquake in a single region is insufficient to generalize to
+the problem of all buildings everywhere. So we would want to source or
+collect data from other earthquakes and build up a large database. Some
+of the features would need changing as well. Geographic data seems
+really important in this model, and yet we weren't given absolute
+measurements of location. Something like lat/long would be more
+generalizable. Finally, we would want to make some determination about
+our needs from this model. Determinations like how accurate do we need
+the model to be to be confident in our decision making? Do we care about
+predicting one class over the others? For example, if we're an insurance
+company than predicting grade 3 damage would be really important,
+because that's where we'll lose the most money. These questions would
+need be to refined in faciliated conversations with stakeholders, before
+being built into the final model.
+
+Thanks for your attention in going through this report!
 
 
     % Add a bibliography block to the postdoc
